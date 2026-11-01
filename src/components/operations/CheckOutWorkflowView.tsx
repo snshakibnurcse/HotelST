@@ -150,7 +150,7 @@ export function CheckOutWorkflowView({ hotelId, occupiedReservations, rooms = []
       setExtendingRes(null);
       router.refresh();
     } else {
-      setExtendError(res.error || "Failed to extend stay");
+      setExtendError("error" in res ? (res.error as string) : "Failed to extend stay");
     }
   };
 

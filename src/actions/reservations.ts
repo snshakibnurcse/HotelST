@@ -747,7 +747,7 @@ export async function extendReservationAction(
           },
         });
 
-        return { success: true, reservation: updatedRes, extraNights, newTotal, roomMoved: true, newRoomNumber };
+        return { success: true as const, reservation: updatedRes, extraNights, newTotal, roomMoved: true, newRoomNumber };
       } else {
         // Case A: Same Room Extension
         const avail = await checkRoomAvailability(res.roomId, currentCheckOutNorm, newCheckOutNorm, res.id, tx);
@@ -799,7 +799,7 @@ export async function extendReservationAction(
           },
         });
 
-        return { success: true, reservation: updatedRes, extraNights, newTotal, roomMoved: false, newRoomNumber };
+        return { success: true as const, reservation: updatedRes, extraNights, newTotal, roomMoved: false, newRoomNumber };
       }
     });
 
@@ -820,6 +820,6 @@ export async function extendReservationAction(
 
     return result;
   } catch (err: unknown) {
-    return { success: false, error: err instanceof Error ? err.message : "Failed to extend stay" };
+    return { success: false as const, error: err instanceof Error ? err.message : "Failed to extend stay" };
   }
 }
